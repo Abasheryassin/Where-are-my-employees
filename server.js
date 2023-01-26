@@ -1,5 +1,5 @@
 const inquirer = require("inquirer");
-const { viewDeparmentsQuery} = require("./lib/sql");
+const {viewDeparmentsQuery, viewEmployeesQuery, viewRolesQuery, addDepartmentQuery, addEmployeeQuery, addRoleQuery, updateEmployeeQuery} = require("./lib/sql");
 const cTable = require('console.table');
 
 function mainPrompt(){
@@ -48,13 +48,13 @@ function viewDeparments() {
 
 function viewRoles() {
     console.log("in view roles");
-
+    viewRolesQuery();
     mainPrompt();
 }
 
 function viewEmployees() {
     console.log("in view employees");
-
+    viewEmployeesQuery();
     mainPrompt();
 }
 
