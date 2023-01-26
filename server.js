@@ -1,5 +1,6 @@
 const inquirer = require("inquirer");
-
+const { viewDeparmentsQuery} = require("./lib/sql");
+const cTable = require('console.table');
 
 function mainPrompt(){
     inquirer
@@ -31,7 +32,7 @@ function mainPrompt(){
                 break;
             case "Update employee":
                 updateEmployee();
-                break
+                break;
             default:
                 console.log("Goodbye!");
                 process.exit(0);
@@ -41,7 +42,7 @@ function mainPrompt(){
 
 function viewDeparments() {
     console.log("in view departments");
-
+    viewDeparmentsQuery();
     mainPrompt();
 }
 
