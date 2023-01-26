@@ -40,7 +40,7 @@ function mainPrompt(){
     })
 }
 
-async function viewDeparments() {
+function viewDeparments() {
     console.log("in view departments");
     viewDeparmentsQuery();
     mainPrompt();
