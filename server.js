@@ -101,7 +101,35 @@ function addRole() {
 
 function addEmployee() {
     console.log("in add employee");
-    mainPrompt();
+    inquirer
+    .prompt([
+        {
+            type: "input",
+            message: "Enter the employee's first name",
+            name: "first"
+        },
+        {
+            type: "input",
+            message: "Enter the employee's last name",
+            name: "last"
+        },
+        {
+            type: "input",
+            message: "Enter the employees role ID",
+            name: "roleId"
+        },
+        {
+            type: "input",
+            message: "Enter the employee's manager's ID (hit enter in NULL)",
+            name: "managerId"
+        }
+    ])
+    .then((response) => {
+        let {first, last, roleId, managerId} = response;
+
+        addEmployeeQuery(first, last, roleId, managerId);
+        mainPrompt();
+    })
 }
 
 function updateEmployee() {
