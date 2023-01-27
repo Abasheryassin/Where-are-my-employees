@@ -60,8 +60,16 @@ function viewEmployees() {
 
 function addDepartment() {
     console.log("in add deparment");
-
-    mainPrompt();
+    inquirer
+    .prompt({
+        type: "input",
+        message: "Please enter the name of the department",
+        name: "department"
+    })
+    .then((response) => {
+        addDepartmentQuery(response.department);
+        mainPrompt();
+    });
 }
 
 function addRole() {

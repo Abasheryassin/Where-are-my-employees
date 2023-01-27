@@ -15,12 +15,12 @@ VALUES
 ("Sales Lead", 120000, 4),
 ("Sales Associate", 80000, 4);
 
-INSERT INTO emplyoee (first_name, last_name)
+INSERT INTO employee (first_name, last_name, role_id, manager_id)
 VALUES
-("Sam", "Baker"),
-("Justin", "Jerfferson"),
-("Walt", "Disney"),
-("Yassin", "Abasher"),
-("Rachel", "Curren"),
-("Kayla", "Taylor"),
-("Moti", "Begna");
+("Sam", "Baker", 1, 2),
+("Justin", "Jerfferson", 3, NULL),
+("Walt", "Disney", 5, NULL),
+("Yassin", "Abasher", 7, NULL),
+("Rachel", "Curren", 2, 4),
+("Kayla", "Taylor", 4, NULL),
+("Moti", "Begna", 6, 4);
