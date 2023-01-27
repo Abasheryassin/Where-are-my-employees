@@ -1,5 +1,5 @@
 const inquirer = require("inquirer");
-const {viewDeparmentsQuery, viewEmployeesQuery, viewRolesQuery, addDepartmentQuery, addEmployeeQuery, addRoleQuery, updateEmployeeQuery} = require("./lib/sql");
+const {viewDeparmentsQuery, viewEmployeesQuery, viewRolesQuery, addDepartmentQuery, addEmployeeQuery, addRoleQuery, updateEmployeeQuery, getDepartments} = require("./lib/sql");
 const cTable = require('console.table');
 
 function mainPrompt(){
@@ -74,13 +74,33 @@ function addDepartment() {
 
 function addRole() {
     console.log("in add role");
-
-    mainPrompt();
+    inquirer
+    .prompt([
+        {
+            type: "input",
+            message: "Enter the name od the role",
+            name: "roleName"
+        },
+        {
+            type: "input",
+            message: "Enter the salary of the role",
+            name: "salary"
+        },
+        {
+            type: "input",
+            message: "Enter department id",
+            name: "departmentId"
+        }
+    ])
+    .then((response) => {
+        const {roleName, salary, departmentId} = response;
+        addRoleQuery(roleName, salary, departmentId);
+        mainPrompt();
+    })
 }
 
 function addEmployee() {
     console.log("in add employee");
-
     mainPrompt();
 }
 
@@ -93,4 +113,5 @@ function updateEmployee() {
 function init() {
     mainPrompt();
 }
+
 init();
