@@ -74,9 +74,29 @@ function addDepartment() {
 
 function addRole() {
     console.log("in add role");
-    let a = getDepartments();
-    console.log(a);
-    mainPrompt();
+    inquirer
+    .prompt([
+        {
+            type: "input",
+            message: "Enter the name od the role",
+            name: "roleName"
+        },
+        {
+            type: "input",
+            message: "Enter the salary of the role",
+            name: "salary"
+        },
+        {
+            type: "input",
+            message: "Enter department id",
+            name: "departmentId"
+        }
+    ])
+    .then((response) => {
+        const {roleName, salary, departmentId} = response;
+        addRoleQuery(roleName, salary, departmentId);
+        mainPrompt();
+    })
 }
 
 function addEmployee() {
