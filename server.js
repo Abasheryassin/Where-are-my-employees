@@ -1,6 +1,5 @@
 const inquirer = require("inquirer");
 const {viewDeparmentsQuery, viewEmployeesQuery, viewRolesQuery, addDepartmentQuery, addEmployeeQuery, addRoleQuery, updateEmployeeQuery, getDepartments} = require("./lib/sql");
-const cTable = require('console.table');
 
 function mainPrompt(){
     inquirer
@@ -8,7 +7,7 @@ function mainPrompt(){
         type: "list",
         message: "Please choose an action below",
         name: "mainChoice",
-        choices: ["View departments", "View roles", "View employees", "Add department", "Add role", "Add employee", "Update employee", "Exit"]
+        choices: ["View departments", "View roles", "View employees", "Add department", "Add role", "Add employee", "Update employee role", "Exit"]
     })
     .then((response) => {
         switch (response.mainChoice){
@@ -30,7 +29,7 @@ function mainPrompt(){
             case "Add employee":
                 addEmployee();
                 break;
-            case "Update employee":
+            case "Update employee role":
                 updateEmployee();
                 break;
             default:
@@ -41,25 +40,21 @@ function mainPrompt(){
 }
 
 function viewDeparments() {
-    console.log("in view departments");
     viewDeparmentsQuery();
     mainPrompt();
 }
 
 function viewRoles() {
-    console.log("in view roles");
     viewRolesQuery();
     mainPrompt();
 }
 
 function viewEmployees() {
-    console.log("in view employees");
     viewEmployeesQuery();
     mainPrompt();
 }
 
 function addDepartment() {
-    console.log("in add deparment");
     inquirer
     .prompt({
         type: "input",
@@ -73,7 +68,7 @@ function addDepartment() {
 }
 
 function addRole() {
-    console.log("in add role");
+
     inquirer
     .prompt([
         {
@@ -100,14 +95,57 @@ function addRole() {
 }
 
 function addEmployee() {
-    console.log("in add employee");
-    mainPrompt();
+    inquirer
+    .prompt([
+        {
+            type: "input",
+            message: "Enter the employee's first name",
+            name: "first"
+        },
+        {
+            type: "input",
+            message: "Enter the employee's last name",
+            name: "last"
+        },
+        {
+            type: "input",
+            message: "Enter the employees role ID",
+            name: "roleId"
+        },
+        {
+            type: "input",
+            message: "Enter the employee's manager's ID (hit enter in NULL)",
+            name: "managerId"
+        }
+    ])
+    .then((response) => {
+        let {first, last, roleId, managerId} = response;
+
+        addEmployeeQuery(first, last, roleId, managerId);
+        mainPrompt();
+    })
 }
 
 function updateEmployee() {
-    console.log("in update employee");
 
-    mainPrompt();
+    inquirer
+    .prompt([
+        {
+            type: "input",
+            message: "Choose and employee ID",
+            name: "employeeId"
+        },
+        {
+            type: "input",
+            message: "Enter the new role ID",
+            name: "newRole"
+        }
+    ])
+    .then((response) => {
+        updateEmployeeQuery(response.employeeId, response.newRole);
+        mainPrompt();
+    })
+
 }
 
 function init() {
