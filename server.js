@@ -1,6 +1,5 @@
 const inquirer = require("inquirer");
 const {viewDeparmentsQuery, viewEmployeesQuery, viewRolesQuery, addDepartmentQuery, addEmployeeQuery, addRoleQuery, updateEmployeeQuery, getDepartments} = require("./lib/sql");
-const cTable = require('console.table');
 
 function mainPrompt(){
     inquirer
@@ -41,25 +40,21 @@ function mainPrompt(){
 }
 
 function viewDeparments() {
-    console.log("in view departments");
     viewDeparmentsQuery();
     mainPrompt();
 }
 
 function viewRoles() {
-    console.log("in view roles");
     viewRolesQuery();
     mainPrompt();
 }
 
 function viewEmployees() {
-    console.log("in view employees");
     viewEmployeesQuery();
     mainPrompt();
 }
 
 function addDepartment() {
-    console.log("in add deparment");
     inquirer
     .prompt({
         type: "input",
@@ -73,7 +68,7 @@ function addDepartment() {
 }
 
 function addRole() {
-    console.log("in add role");
+
     inquirer
     .prompt([
         {
@@ -100,7 +95,6 @@ function addRole() {
 }
 
 function addEmployee() {
-    console.log("in add employee");
     inquirer
     .prompt([
         {
@@ -133,7 +127,6 @@ function addEmployee() {
 }
 
 function updateEmployee() {
-    console.log("in update employee");
 
     inquirer
     .prompt([
